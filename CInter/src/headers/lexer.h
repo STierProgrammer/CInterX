@@ -2,20 +2,26 @@
 
 #include <string>
 #include <vector>
+#include <cctype>
+#include <unordered_map>
+#include "../utils/logger.cpp"
 
-class lexer
+enum class TokenType {
+	Number,
+	Identifier,
+	Equals,
+	Let,
+
+	OpenParen,
+	CloseParen,
+
+	BinaryOperator
+};
+
+namespace lexer
 {
-public:
-	enum class TokenType {
-		Number,
-		Identifier,
-		Equals,
-		Let,
-
-		OpenParen,
-		CloseParen,
-	
-		BinaryOperator
+	static std::unordered_map<std::string, TokenType> KEYWORDS = {
+		{ "let", TokenType::Let },
 	};
 
 	struct Token {
@@ -23,9 +29,8 @@ public:
 		TokenType type;
 	};
 
-	TokenType type = TokenType::BinaryOperator;
-
 	Token token(std::string value, TokenType type);
-	std::vector<Token> tokenize(std::string src);
+	std::vector<Token> tokenize(std::string src, Logger& logger);
+	bool isSkippable(const std::string& str);
 };
 

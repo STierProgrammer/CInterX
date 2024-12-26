@@ -130,6 +130,8 @@
     <ClCompile Include="src\core\lexer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\test.cpp" />
+    <ClCompile Include="src\utils\logger.cpp" />
+    <ClCompile Include="src\utils\tokens.cpp" />
     <ClCompile Include="src\utils\vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
