@@ -6,7 +6,7 @@
 class lexer
 {
 public:
-	enum TokenType {
+	enum class TokenType {
 		Number,
 		Identifier,
 		Equals,
@@ -22,6 +22,8 @@ public:
 		std::string value;
 		TokenType type;
 	};
+
+	TokenType type = TokenType::BinaryOperator;
 
 	Token token(std::string value, TokenType type);
 	std::vector<Token> tokenize(std::string src);

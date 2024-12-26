@@ -15,6 +15,13 @@ std::vector<lexer::Token> lexer::tokenize(std::string str)
 		if (characters[0] == '(') {			
 			tokens.push_back(token(std::string(1, VectorUtils::shift(characters)), TokenType::OpenParen));
 		}
+		else if (characters[0] == ')') {
+			tokens.push_back(token(std::string(1, VectorUtils::shift(characters)), TokenType::CloseParen));
+		}
+
+		else if (characters[0] == '+' || characters[0] == '-' || characters[0] == '*' || characters[0] == '/') {
+			tokens.push_back(token(std::string(1, VectorUtils::shift(characters)), TokenType::BinaryOperator));
+		}
 	}
 
 	return tokens;
