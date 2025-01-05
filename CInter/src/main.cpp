@@ -1,26 +1,13 @@
 #include <iostream>
-#include "./headers/lexer.h"
+#include "../include/core/lexer.h"
 #include "./utils/tokens.cpp"
 
 int main() {
-	//// For testing stuff
-	//std::cout << "*** TEST ***" << std::endl;
-	//std::cout << "*** **** ***" << std::endl;
-	//std::cout << "*** **** ***" << std::endl;
-	//std::cout << "\n";
-	//
-	//run();
 	Logger logger("my_log.txt");
 
-	std::cout << "\n";
-	std::cout << "*** MAIN ***" << std::endl;
-	std::cout << "*** **** ***" << std::endl;
-	std::cout << "*** **** ***" << std::endl;
-	std::cout << "\n";
+	std::vector<Token> tokens = lexer::tokenize("1", logger);
 
-	std::vector<lexer::Token> tokens = lexer::tokenize("1", logger);
-
-	for (lexer::Token tk : tokens) {
+	for (Token tk : tokens) {
 		std::cout << "Type: " << TokenUtils::typeToString(tk.type);
 	}
 

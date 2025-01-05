@@ -1,23 +1,20 @@
-#include "../headers/lexer.h"
+#include "../../include/core/lexer.h"
 #include "../utils/vectors.cpp"
 
-lexer::Token lexer::token(std::string value, TokenType type)
+#define IS_SKIPPABLE(str) str == " " || str == "\n" || str == "\t"
+
+Token lexer::token(std::string value, TokenType type)
 {
 	return { value, type };
 }
 
-bool lexer::isSkippable(const std::string& str)
-{
-	return str == " " || str == "\n" || str == "\t";
-}
-
-std::vector<lexer::Token> lexer::tokenize(std::string str, Logger& logger)
+std::vector<Token> lexer::tokenize(std::string str, Logger& logger)
 {
 	std::vector<Token> tokens;
 	std::vector<char> characters(str.begin(), str.end());
 
 	while (characters.size() > 0) {
-		if (characters[0] == '(') {			
+		if (str[0] == '(') {			
 			tokens.push_back(token(std::string(1, VectorUtils::shift(characters)), TokenType::OpenParen));
 		}
 		else if (characters[0] == ')') {
@@ -61,7 +58,7 @@ std::vector<lexer::Token> lexer::tokenize(std::string str, Logger& logger)
 				}
 			}
 
-			else if (isSkippable(std::string(1, characters[0]))) {
+			else if (IS_SKIPPABLE(std::string(1, characters[0]))) {
 				VectorUtils::shift(characters);
 			}
 

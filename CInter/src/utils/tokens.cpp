@@ -1,5 +1,5 @@
 #include <string>
-#include "../headers/lexer.h"
+#include "../../include/core/lexer.h"
 
 namespace TokenUtils {
 	static std::string typeToString(TokenType type) {

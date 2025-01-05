@@ -1,8 +1,6 @@
-#include <string>
+#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <iostream>
-#include <ctime>
 
 enum LogLevel {
 	DEBUG,

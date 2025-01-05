@@ -129,13 +129,14 @@
   <ItemGroup>
     <ClCompile Include="src\core\lexer.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\test.cpp" />
+    <ClCompile Include="test\test.cpp" />
     <ClCompile Include="src\utils\logger.cpp" />
     <ClCompile Include="src\utils\tokens.cpp" />
     <ClCompile Include="src\utils\vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\headers\lexer.h" />
+    <ClInclude Include="include\core\ast.h" />
+    <ClInclude Include="include\core\lexer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

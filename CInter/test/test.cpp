@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "./utils/vectors.cpp"
+#include "../src/utils/vectors.cpp"
 
 void static run() {
 	std::vector<char> chars = { 'a', 'b', 'c' };
