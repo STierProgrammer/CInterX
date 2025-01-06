@@ -15,7 +15,9 @@ enum class TokenType {
 	Let,
 	OpenParen,
 	CloseParen,
-	BinaryOperator
+	BinaryOperator,
+
+	EOFToken,
 };
 
 struct Token {
@@ -29,6 +31,7 @@ namespace lexer
 		{ "let", TokenType::Let },
 	};
 
+	static std::string tokenToString(TokenType type);
 	Token token(std::string value, TokenType type);
 	std::vector<Token> tokenize(std::string src, Logger& logger);
 };

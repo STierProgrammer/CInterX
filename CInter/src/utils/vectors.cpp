@@ -1,11 +1,9 @@
-#include <vector>
+#include "../../include/utils/vectors.h"
 
-namespace VectorUtils {
-	template<typename T>
-	T shift(std::vector<T>& vector) {
-		T element = vector.front();
-		vector.erase(vector.begin());
+template<typename T>
+T VectorUtils::shift(std::vector<T>& vector) {
+	T element = vector.front();
+	vector.erase(vector.begin());
 
-		return element;
-	}
-};
+	return element;
+}

@@ -3,6 +3,30 @@
 
 #define IS_SKIPPABLE(str) str == " " || str == "\n" || str == "\t"
 
+std::string lexer::tokenToString(TokenType type)
+{
+	switch (type)
+	{
+		case TokenType::Number:
+			return "Number";
+		case TokenType::Identifier:
+			return "Identifier";
+		case TokenType::Equals:
+			return "Equals";
+		case TokenType::Let:
+			return "Let";
+		case TokenType::OpenParen:
+			return "OpenParen";
+		case TokenType::CloseParen:
+			return "CloseParen";
+		case TokenType::BinaryOperator:
+			return "BinaryOperator";
+		default:
+			exit(1);
+			return NULL;
+	}
+}
+
 Token lexer::token(std::string value, TokenType type)
 {
 	return { value, type };
@@ -68,6 +92,8 @@ std::vector<Token> lexer::tokenize(std::string str, Logger& logger)
 			}
 		}
 	}
+
+	tokens.push_back(token("[EOF]", TokenType::EOFToken));
 
 	return tokens;
 }

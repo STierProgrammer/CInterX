@@ -1,50 +1,36 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
+#include "../../include/utils/logger.h"
 
-enum LogLevel {
-	DEBUG,
-	INFO,
-	WARNING,
-	ERROR,
-	CRITICAL
-};
+Logger::Logger(const std::string& filename)
+{
+	logFile.open(filename, std::ios::app);
 
-class Logger {
-public:
-	Logger(const std::string& filename)
-	{
-		logFile.open(filename, std::ios::app);
-
-		if (!logFile.is_open()) {
-			std::cerr << "Error opening log file!" << std::endl;
-		}
+	if (!logFile.is_open()) {
+		std::cerr << "Error opening log file!" << std::endl;
 	}
+}
 
-	~Logger() {
-		logFile.close();
+Logger::~Logger()
+{
+	logFile.close();
+}
+
+void Logger::log(LogLevel level, const std::string& message)
+{
+	std::ostringstream logEntry;
+
+	logEntry << "[" << levelToString(level) << "] " << ": " << message << std::endl;
+
+	std::cout << logEntry.str();
+
+	if (logFile.is_open()) {
+		logFile << logEntry.str();
+		logFile.flush();
 	}
+}
 
-	void log(LogLevel level, const std::string& message)
-	{
-
-		std::ostringstream logEntry;
-
-		logEntry << "[" << levelToString(level) << "] " << ": " << message << std::endl;
-
-		std::cout << logEntry.str();
-
-		if (logFile.is_open()) {
-			logFile << logEntry.str();
-			logFile.flush();
-		}
-	}
-
-private:
-	std::ofstream logFile;
-
-	std::string levelToString(LogLevel level) {
-		switch (level) {
+std::string Logger::levelToString(LogLevel level)
+{
+	switch (level) {
 		case DEBUG:
 			return "DEBUG";
 		case INFO:
@@ -56,7 +42,6 @@ private:
 		case CRITICAL:
 			return "CRITICAL";
 		default:
-			return "UNKNOWN";
-		}
+			return "UNDEFINED";
 	}
-};
+}

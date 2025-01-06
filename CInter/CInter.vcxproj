@@ -127,16 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\utils\vectors.h" />
+    <ClCompile Include="src\core\parser.cpp" />
     <ClCompile Include="src\core\lexer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="test\test.cpp" />
     <ClCompile Include="src\utils\logger.cpp" />
-    <ClCompile Include="src\utils\tokens.cpp" />
     <ClCompile Include="src\utils\vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\ast.h" />
     <ClInclude Include="include\core\lexer.h" />
+    <ClInclude Include="include\core\parser.h" />
+    <ClInclude Include="include\utils\logger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

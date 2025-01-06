@@ -2,6 +2,7 @@
 #define CINTER_CORE_AST_H
 
 #include <vector>
+#include <string>
 
 enum class NodeType {
 	Program,
@@ -11,8 +12,10 @@ enum class NodeType {
 };
 
 struct Statement {
-	static NodeType kind;
+	NodeType kind;
 };
+
+struct Expression : Statement {};
 
 struct Program : Statement {
 	Program() {
@@ -20,6 +23,35 @@ struct Program : Statement {
 	}
 
 	std::vector<Statement*> body;
+};
+
+struct BinaryExpression : Expression {
+	BinaryExpression() {
+		kind = NodeType::BinaryExpression;
+		left = nullptr;
+		right = nullptr;
+	}
+
+	Statement* left;
+	Statement* right;
+	std::string op;
+};
+
+struct Identifier : Expression {
+	Identifier() {
+		kind = NodeType::Identifier;
+	}
+
+	std::string symbol;
+};
+
+struct NumericLiteral : Expression {
+	NumericLiteral() {
+		kind = NodeType::NumericLiteral;
+		value = NULL;
+	}
+
+	long double value;
 };
 
 #endif // !CINTER_CORE_AST_H
